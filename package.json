@@ -1,0 +1,20 @@
+{
+  "name": "SQ003-kotlin-bot",
+  "version": "1.0.0",
+  "description": "A chat bot manager for SQ003 discord kotlin chat group",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "nodemon index.js",
+    "start-prod": "node index.js"
+  },
+  "keywords": [],
+  "author": "amakiri joseph",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
