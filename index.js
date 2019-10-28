@@ -1,20 +1,14 @@
+const { DISCORD_BOT_TOKEN } = require('./config');
+const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const { DISCORD_BOT_TOKEN } = require('./config');
-
-client.on('ready', () => console.log(`Logged in as ${client.user.tag}!`));
-
-client.on('message', message => {
-  if (message.content === 'ping') {
-    message.reply('Pong!');
-  }
-});
-
-client.on('guildMemberAdd', member => {
-  member.send(
-    `Welcome on the server! Please be aware that we won't tolerate troll, spam or harassment. Have fun 😀`
-  );
+fs.readdir('./events', (err, files) => {
+  files.forEach(file => {
+    const eventHandler = require(`./events/${file}`);
+    const [eventName] = file.split('.');
+    client.on(eventName, (...args) => eventHandler(client, ...args));
+  });
 });
 
 client.login(DISCORD_BOT_TOKEN);
